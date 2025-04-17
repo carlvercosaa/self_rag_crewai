@@ -1,20 +1,24 @@
-## 🧠 Self-RAG com CrewAI
+## 🧠 Self-RAG with CrewAI
 
-Este repositório implementa uma arquitetura **Self-RAG (Self-Reflective Retrieval-Augmented Generation)** integrada com a ferramenta **CrewAI**, permitindo que agentes recuperem conhecimento externo, gere respostas e reflitam sobre tarefas de forma autônoma em fluxos baseados em LLMs.
+This repository implements a **Self-RAG (Self-Reflective Retrieval-Augmented Generation)** architecture integrated with the **CrewAI** framework. It enables autonomous agents to retrieve external knowledge, generate responses, and evaluate the quality of information within a multi-step, LLM-powered reasoning flow.
 
-## 📌 Visão Geral
+## 📌 Overview
 
-A arquitetura combina os seguintes componentes:
+The architecture consists of specialized agents coordinated by a CrewAI flow, each responsible for a distinct stage of the process:
 
-- **Retriever Agent**: Busca informações relevantes em uma base de conhecimento externa.
-- **Grader Agents**: Avalia a relevancia dos documentos recuperados e das respostas geradas com base em uma pergunta.
-- **Generator Agent**: Gera uma resposta com base no conhecimento externo recuperado.
-- **Rewriter Agent**: Reescreve a pergunta caso necessário.
-- **CrewAI Flow**: Orquestra a comunicação e interação entre os agentes de forma coordenada.
+- Retriever Agent: Retrieves relevant information from an external knowledge base.
 
-Essa abordagem visa aumentar a precisão, a coerência e a capacidade de autoavaliação do sistema em tarefas complexas com múltiplas etapas.
+- Grader Agents: Evaluate the relevance of the retrieved documents and the generated answers based on a given question.
 
-## 🚀 Tecnologias Utilizadas
+- Generator Agent: Generates an answer based on the retrieved external knowledge.
+
+- Rewriter Agent: Rewrites the question if necessary.
+
+- CrewAI Flow: Orchestrates communication and interaction between agents in a coordinated manner.
+
+This approach aims to increase the system’s accuracy, coherence, and self-evaluation capabilities in complex, multi-step tasks.
+
+## 🚀 Technologies Used
 
 - Python
 - CrewAI
@@ -27,19 +31,29 @@ Essa abordagem visa aumentar a precisão, a coerência e a capacidade de autoava
 
 ![Execution Flow](image/crewai_flow_img.png)
 
+## 🧩 Step-by-Step Breakdown
+
 ```text
+🔍 Retriever:
+Fetches relevant documents to support the query.
 
-📑 Retriever:
-Recupera documentos relevantes para responder a pergunta.
+🧠 Document Grader:
+Evaluates and filters documents based on relevance.
 
-🧠 Document grader:
-Avalia a relevancia dos documentos recuperados.
+🔀 Document Router:
+Routes the flow depending on how many relevant documents were retrieved.
 
-🧠 Generate answer:
-Gera uma resposta para a pergunta baseada nos documentos filtrados.
+✍️ Generator:
+Generates a response using filtered context.
 
-🧠 Answer grader:
-Avalia a relevancia da resposta gerada.
+🧠 Answer Grader:
+Evaluates the answer's relevance, coherence, and completeness.
 
-🧠 Resposta Final:
-Gera uma resposta final.
+🔀 Answer Router:
+Determines if the answer is ready or needs to go through revision.
+
+♻️ Rewriter (optional):
+Rewrites the original question if needed for better understanding or improved results.
+
+✅ Final Answer:
+Refined, validated response produced by the full reasoning pipeline.
