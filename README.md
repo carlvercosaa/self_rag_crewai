@@ -25,7 +25,7 @@ Essa abordagem visa aumentar a precisão, a coerência e a capacidade de autoava
 
 ## 📸 Execution Flow
 
-![Execution Flow](image/crewai_image_img.png)
+![Execution Flow](image/crewai_flow_img.png)
 
 ```text
 
